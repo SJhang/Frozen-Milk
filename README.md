@@ -3,7 +3,7 @@
 ### Background
 
 Frozen Milk is vertical scroller game from top to bottom.
-A player will control a cow, attempting to ski through within the flags in order to earn high points.
+A player will control a cow, attempting to ski through between the flags in order to earn high points.
 
 ### Functionality & MVP  
 

@@ -1,0 +1,16 @@
+{
+  "name": "Frozen-Milk",
+  "version": "1.0.0",
+  "description": "### Background",
+  "main": "entry.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "webpack": "^1.13.3"
+  }
+}
