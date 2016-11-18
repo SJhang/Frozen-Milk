@@ -16,6 +16,8 @@
 
 - HTML5 local storage access functionality with cookie fallback for JavaScript using mmvc library in HTML5.
 - SpriteSheet implemented using Easeljs
+- Start, pause, restart Button
+- click any screen to control character in game
 
 ## In game images
 
