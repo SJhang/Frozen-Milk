@@ -251,11 +251,11 @@
 	          }
 	        }
 	      }
-	      // if (this.globalTicker % 90 === 0) {
-	      //   this.flag.populateFlags(200, this.width);
-	      // } else {
-	      //   this.flag.populateFlags(0, this.width);
-	      // }
+	      if (this.globalTicker % 90 === 0) {
+	        this.flag.populateFlags(200, this.width);
+	      } else {
+	        this.flag.populateFlags(0, this.width);
+	      }
 	    }
 	  }, {
 	    key: 'difficultyIncrease',
