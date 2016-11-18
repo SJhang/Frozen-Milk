@@ -177,7 +177,6 @@
 	      var _this3 = this;
 	
 	      var cowOnScreen = stage.getChildByName("cowSprite");
-	      console.log(cowOnScreen.x);
 	      if (cowOnScreen.x >= width || cowOnScreen.x <= 0) {
 	        (0, _stop2.default)(function () {
 	          return _this3.start();
@@ -200,7 +199,6 @@
 	    value: function mouseClickToMoveCow(event) {
 	      var _this4 = this;
 	
-	      console.log("click");
 	      var nextX = void 0;
 	      canvas.addEventListener("click", function () {
 	        if (_this4.cow.faceRight) {
@@ -219,12 +217,11 @@
 	    value: function tickerCowPlaying(event) {
 	      var wrapFlags = stage.getChildByName("wrapFlags");
 	      var cow = stage.getChildByName("cowSprite");
-	      console.log(wrapFlags);
 	
 	      if (wrapFlags && wrapFlags.getNumChildren() > 0) {
 	        for (var i = wrapFlags.getNumChildren() - 1; i > 0; i--) {
 	          var flagContainer = wrapFlags.getChildAt(i);
-	          debugger;
+	
 	          if (flagContainer.currentY < -canvas.height) {
 	            wrapFlags.removeChild(flagContainer);
 	            continue;
@@ -497,7 +494,6 @@
 	      leftFlag.name = "leftFlag";
 	      // Math.floor((Math.random()* (flags.x * 60)/100)) - 400
 	      leftFlag.x = this.random(5, 30);
-	      console.log(leftFlag.x);
 	      leftFlag.endX = leftFlag.x + 400;
 	      leftFlag.sourceRect = new createjs.Rectangle(0, 0, 450, 32);
 	      flags.addChild(leftFlag);
