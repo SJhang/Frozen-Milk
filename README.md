@@ -7,6 +7,7 @@
 - Cow skiing downhill game
 - try to go through the flags using mouse clicks
 
+
 ## Technology Stack
 
 - JavaScript
@@ -21,6 +22,7 @@
 - SpriteSheet implemented using Easeljs
 - Start, pause, restart Button
 - click any screen to control character in game
+- difficulty increases as time passes
 
 ## In game images
 

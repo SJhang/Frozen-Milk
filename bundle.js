@@ -265,46 +265,6 @@
 	        this.width -= 10;
 	      }
 	    }
-	  }, {
-	    key: 'checkGameOver',
-	    value: function checkGameOver(childOffset) {
-	      var edgeX = cow.x;
-	      var edgeY = cow.y;
-	      var halfCowHeight = Math.round((22 - 2) / 2);
-	      var halfCowWidth = Math.round((27 - 3) / 2);
-	
-	      var listEdges = [{
-	        x: cow.x - halfCowWidth,
-	        y: cow.y - halfCowHeight
-	      }, {
-	        x: cow.x + halfCowWidth,
-	        y: cow.y - halfCowHeight
-	      }, {
-	        x: cow.x - halfCowWidth,
-	        y: cow.y + halfCowHeight
-	      }, {
-	        x: cow.x + halfCowWidth,
-	        y: cow.y + halfCowHeight
-	      }];
-	
-	      for (var j = 0; i < listEdges.length; i++) {
-	        edgeX = listEdges[j].x;
-	        edgeY = listEdges[j].y;
-	
-	        if (edgeY > childOffset.left.leftTop.y && edgeY < childOffset.left.topLeft.y) {
-	          if (edgeY < childOffset.left.leftSide.x || edgeX > childOffset.right.leftTop.x) {
-	            stage.addChild(cow);
-	            stage.options.stage = "gameOver";
-	            stage.removeChild(scoreText);
-	            createjs.Ticker.removeEventListener("tick", tickerCowPlaying);
-	            stage.addChild(cow);
-	            createjs.Tween.get(cow).to({ x: edgeGroundX, rotation: 90 }, 500, createjs.Ease.sineIn).call(function () {
-	              setTimeout(function () {}, 500);
-	            });
-	          }
-	        }
-	      }
-	    }
 	  }]);
 	
 	  return Game;
