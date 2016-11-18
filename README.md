@@ -19,4 +19,4 @@
 
 ## In game images
 
-![image of in_game](app/assets/images/cow.png)
+![image of in_game](assets/images/cow.png)
