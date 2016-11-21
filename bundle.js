@@ -253,9 +253,10 @@
 	      }
 	      if (this.globalTicker % 90 === 0) {
 	        this.flag.populateFlags(200, this.width);
-	      } else {
-	        this.flag.populateFlags(0, this.width);
 	      }
+	      // else {
+	      //   this.flag.populateFlags(0, this.width);
+	      // }
 	    }
 	  }, {
 	    key: 'difficultyIncrease',
@@ -433,11 +434,10 @@
 	
 	      var flags = new createjs.Container();
 	      flags.name = "flags";
-	      flags.cowPassed = false;
+	      this.cowPassed = false;
 	      flags.x = -400 + x;
 	      flags.y = startYPos;
 	      flags.currentY = startYPos;
-	      flags.childOffset = {};
 	
 	      var leftFlagImage = new Image();
 	      var rightFlagImage = new Image();
@@ -455,7 +455,7 @@
 	      // Math.floor((Math.random()* (flags.x * 60)/100)) - 400
 	      leftFlag.x = this.random(5, 30);
 	      leftFlag.endX = leftFlag.x + 400;
-	      leftFlag.sourceRect = new createjs.Rectangle(0, 0, 450, 32);
+	      // leftFlag.sourceRect = new createjs.Rectangle(0, 0, 450, 32);
 	      flags.addChild(leftFlag);
 	
 	      var rightFlag = new createjs.Bitmap(rightFlagImage);
@@ -463,7 +463,7 @@
 	      var distanceBetweenFlags = this.random(50, w);
 	      var startRightFlag = leftFlag.endX + distanceBetweenFlags;
 	      rightFlag.x = startRightFlag;
-	      rightFlag.sourceRect = new createjs.Rectangle(0, 0, 418, 32);
+	      // rightFlag.sourceRect = new createjs.Rectangle(0, 0, 418, 32);
 	
 	      flags.addChild(rightFlag);
 	      this.wrapFlags.addChild(flags);
