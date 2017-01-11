@@ -304,6 +304,11 @@
 	    welcomeText.x = width / 2;
 	    welcomeText.y = 150;
 	
+	    var click = new createjs.Text("Click", "bold 20px Arial");
+	    click.textAlign = "center";
+	    click.x = width / 2;
+	    click.y = 200;
+	
 	    var background = new createjs.Shape();
 	    background.name = "background";
 	    background.graphics.beginFill("lightgray").drawRoundRect(0, 0, 150, 60, 10);
@@ -349,18 +354,25 @@
 	    background.name = "background";
 	    background.graphics.beginFill("lightgray").drawRoundRect(0, 0, 90, 35, 10);
 	
-	    var label = new createjs.Text("pause", "bold 20px Arial", "#fff");
-	    label.name = "label";
-	    label.textAlign = "center";
-	    label.textBaseline = "middle";
-	    label.x = 90 / 2;
-	    label.y = 30 / 2;
+	    var label_pause = new createjs.Text("pause", "bold 20px Arial", "#fff");
+	    label_pause.name = "label_pause";
+	    label_pause.textAlign = "center";
+	    label_pause.textBaseline = "middle";
+	    label_pause.x = 90 / 2;
+	    label_pause.y = 30 / 2;
+	
+	    var label_resume = new createjs.Text("resume", "bold 20px Arial", "#fff");
+	    label_resume.name = "label_resume";
+	    label_resume.textAlign = "center";
+	    label_resume.textBaseline = "middle";
+	    label_resume.x = 90 / 2;
+	    label_resume.y = 30 / 2;
 	
 	    var button = new createjs.Container();
 	    button.name = "pauseButton";
 	    button.x = 10;
 	    button.y = 10;
-	    button.addChild(background, label);
+	    button.addChild(background, label_p);
 	    button.on('click', function () {
 	      return pause();
 	    });
