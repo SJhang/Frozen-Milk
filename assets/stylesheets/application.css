@@ -7,30 +7,72 @@
   font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
-}
-
-html, body {
-  height: 100vh;
-  width: 100vw;
-
   font-family: 'Audiowide', cursive;
 }
 
-h1 {
-  font-size: 30px;
+body {
+  display: inline-block;
+  height: 100vh;
+  width: 100vw;
 }
 
-.container {
+h1 {
+  font-size: 50px;
+}
+
+ul, li {
+  list-style: decimal;
+  margin: 0;
+  padding: 0;
+}
+
+#container {
+  height: 100%;
+  width: 100%;
 
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   text-align: center;
   background: #6b92b9;
-  margin: 0;
 }
 
 #canvas {
-  margin: 20px auto;
-  display: block;
   background: white;
+}
+
+#game-wrap {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: inherit;
+}
+
+#game-wrap > div {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.score-board {
+  width: 100%;
+  background: white;
+  border-radius: 3px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 80px;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.footer > .links {
+  width: 120px;
+  display: flex;
+  justify-content: space-between;
 }

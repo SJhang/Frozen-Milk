@@ -1,23 +1,42 @@
+const path = require('path')
+
 module.exports = {
   context: __dirname,
   entry: "./entry.js",
   output: {
-  	filename: "./bundle.js"
-  },
-  resolve: {
-    extensions: ['', '.js', '.jsx']
+    path: path.join(__dirname),
+    filename: "bundle.js",
+    devtoolModuleFilenameTemplate: '[resourcePath]',
+    devtoolFallbackModuleFilenameTemplate: '[resourcePath]?[hash]'
   },
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.jsx?$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: 'babel',
+        test: /\.js?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
         query: {
           presets: ['es2015']
         }
+      },
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader', options: { sourceMap: true }},
+          { loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+              includePaths: [path.resolve(__dirname, 'stylesheets')]
+            }
+          }
+        ]
       }
     ]
   },
-  devtool: 'source-maps'
+  resolve: {
+    extensions: [".js", ".jsx", "*" ]
+  },
+  devtool: 'source-map',
 };
