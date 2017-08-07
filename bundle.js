@@ -79,7 +79,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /* eslint no-undef: "off", max-len: "off" */
 
-var _start = __webpack_require__(7);
+var _start = __webpack_require__(8);
 
 var _start2 = _interopRequireDefault(_start);
 
@@ -99,15 +99,15 @@ var _board = __webpack_require__(2);
 
 var _board2 = _interopRequireDefault(_board);
 
-var _snow = __webpack_require__(6);
+var _snow = __webpack_require__(7);
 
 var _snow2 = _interopRequireDefault(_snow);
 
-var _stop = __webpack_require__(8);
+var _stop = __webpack_require__(9);
 
 var _stop2 = _interopRequireDefault(_stop);
 
-var _score = __webpack_require__(9);
+var _score = __webpack_require__(6);
 
 var _score2 = _interopRequireDefault(_score);
 
@@ -292,6 +292,10 @@ var _game2 = _interopRequireDefault(_game);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 document.addEventListener("DOMContentLoaded", function () {
+  $(function () {
+    $('[data-toggle="popover"]').popover();
+  });
+
   var canvas = document.getElementById("canvas");
   var stage = new createjs.Stage(canvas);
   new _game2.default(canvas, stage);
@@ -564,6 +568,56 @@ exports.default = Pause;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Score = function () {
+  function Score(canvas, stage) {
+    _classCallCheck(this, Score);
+
+    this.canvas = canvas;
+    this.scoreText = new createjs.Text('0', "bold 36px Arial", "#d59bf7");
+  }
+
+  _createClass(Score, [{
+    key: "initScore",
+    value: function initScore() {
+      var num = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+
+      this.scoreText.text = num;
+      this.scoreText.name = "Score Text";
+      this.scoreText.x = Math.round(canvas.width - this.scoreText.getMeasuredWidth() - 60);
+      this.scoreText.y = 10;
+      this.scoreText.shadow = new createjs.Shadow("#000000", 5, 5, 15);
+
+      stage.addChild(this.scoreText);
+    }
+  }, {
+    key: "updateScore",
+    value: function updateScore(num, multiplier) {
+      var updatingSpeed = Math.floor(num / 30);
+      this.scoreText.text = updatingSpeed;
+      stage.update();
+    }
+  }]);
+
+  return Score;
+}();
+
+exports.default = Score;
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 // /* eslint no-undef: "off", max-len: "off" */
 //
 // export default class Snow {
@@ -648,7 +702,7 @@ exports.default = Pause;
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -712,7 +766,7 @@ var Start = function Start(play, stage) {
 exports.default = Start;
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -769,56 +823,6 @@ var Stop = function Stop(start, stage) {
 };
 
 exports.default = Stop;
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var Score = function () {
-  function Score(canvas, stage) {
-    _classCallCheck(this, Score);
-
-    this.canvas = canvas;
-    this.scoreText = new createjs.Text('0', "bold 36px Arial", "#d59bf7");
-  }
-
-  _createClass(Score, [{
-    key: "initScore",
-    value: function initScore() {
-      var num = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-
-      this.scoreText.text = num;
-      this.scoreText.name = "Score Text";
-      this.scoreText.x = Math.round(canvas.width - this.scoreText.getMeasuredWidth() - 60);
-      this.scoreText.y = 10;
-      this.scoreText.shadow = new createjs.Shadow("#000000", 5, 5, 15);
-
-      stage.addChild(this.scoreText);
-    }
-  }, {
-    key: "updateScore",
-    value: function updateScore(num, multiplier) {
-      var updatingSpeed = Math.floor(num / 30);
-      this.scoreText.text = updatingSpeed;
-      stage.update();
-    }
-  }]);
-
-  return Score;
-}();
-
-exports.default = Score;
 
 /***/ })
 /******/ ]);

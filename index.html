@@ -1,53 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>Frozen Milk</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script type="text/javascript" src='./bundle.js'></script>
-    <link rel="stylesheet" href="./assets/stylesheets/application.css">
     <script src="https://code.createjs.com/preloadjs-0.6.2.min.js"></script>
     <script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
     <script src="https://code.createjs.com/tweenjs-0.6.2.min.js"></script>
     <script src="https://code.createjs.com/soundjs-0.6.2.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
     <script src="https://use.fontawesome.com/f56eb72a81.js"></script>
+    <link rel="stylesheet" href="./assets/stylesheets/application.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
   </head>
-  <body>
-    <div id="container">
-      <h1>Frozen Milk</h1>
-      <div id="game-wrap">
-        <div class="left-desc">
-          <div class="instructions">
-            <span>
-              <h2>How to Play</h2>
-              <p>Click on the screen</p>
-            </span>
-          </div>
-        </div>
-        <canvas id="canvas" width='500' height='600'></canvas>
-        <div class="right-desc">
-          <div class="score-board">
-            <h2>Score Board</h2>
-            <ul>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-            </ul>
-          </div>
-        </div>
+  <body class="container-fluid">
+    <nav class="navbar navbar-toggleable-sm navbar-inverse bg-primary">
+      <button type="button" class="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="#myNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand abs">
+        <h3 class="text-white">Frozen Milk</h3>
+      </a>
+
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <button
+              type='button'
+              class="btn btn-secondary"
+              data-placement='bottom'
+              data-container='body'
+              data-toggle='popover'
+              title='How To Play'
+              data-content='Click on the screen to move the skiing cow'>How To play
+            </button>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class='nav-item'>
+            <a class='nav-link'>
+              <i class="fa fa-gamepad fa-2x" aria-hidden="true"></i>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link">
+              <i class="fa fa-github fa-2x" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">
+              <i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">
+              <i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i>
+            </a>
+          </li>
+        </ul>
       </div>
-      <div class="footer">
-        <div class="links">
-          <i class="fa fa-github fa-2x github" aria-hidden="true"></i>
-          <i class="fa fa-linkedin-square fa-2x linkedin" aria-hidden="true"></i>
-          <i class="fa fa-envelope-o fa-2x email" aria-hidden="true"></i>
-        </div>
-        <h4>Designed and Developed by Sonik Jhang</h4>
-        <h4>Frozen Milk</h4>
-      </div>
-    <div>
+    </nav>
+    <div class="container">
+      <canvas id="canvas" width="650" height="600" class="text-center"></canvas>
+    </div>
+    <hr></hr>
+    <p class='text-center'>Designed and Developed by Sonik Jhang</p>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
   </body>
 </html>
