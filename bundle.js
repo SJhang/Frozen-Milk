@@ -634,6 +634,10 @@ window.onload = function () {
 	var W = window.innerWidth;
 	var H = window.innerHeight;
 	canvas.style.zIndex = -10;
+	canvas.style.displa = 'block';
+	canvas.style.position = 'fixed';
+	canvas.style.height = '100%';
+	canvas.style.width = '100%';
 	canvas.width = W;
 	canvas.height = H;
 
