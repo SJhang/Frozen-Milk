@@ -128,7 +128,7 @@ var Game = function () {
     window.width = canvas.width;
 
     this.cow = new _cow2.default(stage);
-    this.flag = new _flag2.default(canvas);
+    this.flag = new _flag2.default(canvas, stage);
     this.score = new _score2.default(stage, canvas);
     this.globalTicker = 0;
     this.dir = 1;
@@ -298,6 +298,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var canvas = document.getElementById("canvas");
   var stage = new createjs.Stage(canvas);
+
+  canvas.style.zIndex = 10;
   new _game2.default(canvas, stage);
 }); /* eslint no-undef: "off", max-len: "off" */
 
@@ -456,7 +458,7 @@ var Flag = function () {
       var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
       var w = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 
-      var startYPos = 610;
+      var startYPos = 510;
       var flagSize = {
         width: width,
         height: 32
@@ -553,7 +555,12 @@ var Pause = function Pause(pause) {
     button.on('click', function () {
       return pause();
     });
-
+    window.onkeydown = function (e) {
+      var code = e.keyCode ? e.keyCode : e.which;
+      if (code === 32) {
+        pause();
+      };
+    };
     stage.addChild(button);
   };
 
@@ -583,7 +590,7 @@ var Score = function () {
     _classCallCheck(this, Score);
 
     this.canvas = canvas;
-    this.scoreText = new createjs.Text('0', "bold 36px Arial", "#d59bf7");
+    this.scoreText = new createjs.Text('0', "bold 36px Arial", "#6DD3CE");
   }
 
   _createClass(Score, [{
@@ -618,88 +625,71 @@ exports.default = Score;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-// /* eslint no-undef: "off", max-len: "off" */
-//
-// export default class Snow {
-// 	constructor(canvas, stage) {
-// 		const innerWidth = window.innerWidth;
-// 		const innerHeight = window.innerHeight;
-// 		canvas.length = innerWidth;
-// 		canvas.height = innerHeight;
-//
-// 		const twoPi = Math.PI * 2;
-// 		let angle = 0;
-// 		snowParticle();
-// 		setInterval(draw(), 33);
-// 	}
-//
-// 	snowParticle() {
-// 		const maxNumOfParticles = 25;
-// 		const particles = [];
-//
-// 		for (let i = 0; i < maxNumOfParticles; i++) {
-// 			particles.push({
-// 				x: Math.random() * innerWidth,
-// 				y: Math.random() * innerHeight,
-// 				radius: Math.random() * 4+1,
-// 				density: Math.random() * maxNumOfParticles
-// 			});
-// 		}
-// 	}
-//
-// 	draw() {
-// 		debugger;
-// 		const rect = new createjs.Rectangle(0, 0, innerWidth, innerHeight);
-//
-// 		rect.fillStyle = "rgba(255, 255, 255, 0.8)";
-// 		rect.beginPath();
-// 		for (var i = 0; i < maxNumOfParticles; i++) {
-// 			const particle = particles[i];
-// 			canvas.moveTo(particle.x, particle.y);
-// 			canvas.arc(particle.x, particle.y, particle.radius, 0, twoPi, true);
-// 		}
-// 		canvas.fill();
-// 		update();
-// 		stage.update();
-// 	}
-//
-// 	update() {
-// 		angle += 0.02;
-// 		for (var i = 0; i < maxNumOfParticles; i++) {
-// 			let particle = particles[i];
-// 			particle.y += Math.cos(angle + particle.density) + 1 + particle.radius/2;
-// 			particle.x += Math.sin(angle) * 2;
-//
-// 			if (particle.x > innerWidth+5 || particle.x < -5 || particle.y > innerHeight) {
-// 				if (i % 3 > 0) {
-// 					particles[i] = {
-// 						x: Math.random() * innerWidth,
-// 						y: -10,
-// 						radius: particle.radius,
-// 						density: particle.density
-// 					};
-// 				} else {
-// 					if (Math.sin(angle) > 0) {
-// 						particles[i] = {
-// 							x: -5,
-// 							y: Math.random() * innerHeight,
-// 							radius: particle.radius,
-// 							density: particle.density
-// 						};
-// 					} else {
-// 						particle = {
-// 							x: innherWidth * 5,
-// 							y: Math.random() * innerHeight,
-// 							radius: particle.radius,
-// 							density: particle.density
-// 						};
-// 					}
-// 				}
-// 			}
-// 		}
-// 	}
-// }
 
+
+window.onload = function () {
+	var canvas = document.getElementById("bg");
+	var ctx = canvas.getContext("2d");
+
+	var W = window.innerWidth;
+	var H = window.innerHeight;
+	canvas.style.zIndex = -10;
+	canvas.width = W;
+	canvas.height = H;
+
+	//snowflake particles
+	var mp = 40; //max particles count
+	var particles = [];
+	for (var i = 0; i < mp; i++) {
+		particles.push({
+			x: Math.random() * W, //x-coordinate
+			y: Math.random() * H, //y-coordinate
+			r: Math.random() * 4 + 1, //radius
+			d: Math.random() * mp //density
+		});
+	}
+
+	//Lets draw the flakes
+	function draw() {
+		ctx.clearRect(0, 0, W, H);
+		ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+		ctx.beginPath();
+		for (var i = 0; i < mp; i++) {
+			var p = particles[i];
+			ctx.moveTo(p.x, p.y);
+			ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, true);
+		}
+		ctx.fill();
+		update();
+	}
+
+	//Function to move the snowflakes
+	var angle = 0;
+	function update() {
+		angle += 0.01;
+		for (var i = 0; i < mp; i++) {
+			var p = particles[i];
+			p.y += Math.cos(angle + p.d) + 1 + p.r / 2;
+			p.x += Math.sin(angle) * 2;
+
+			if (p.x > W + 5 || p.x < -5 || p.y > H) {
+				if (i % 3 > 0) {
+					particles[i] = { x: Math.random() * W, y: -10, r: p.r, d: p.d };
+				} else {
+					if (Math.sin(angle) > 0) {
+						//Enter from the left
+						particles[i] = { x: -5, y: Math.random() * H, r: p.r, d: p.d };
+					} else {
+						//Enter from the right
+						particles[i] = { x: W + 5, y: Math.random() * H, r: p.r, d: p.d };
+					}
+				}
+			}
+		}
+	}
+
+	setInterval(draw, 33);
+};
 
 /***/ }),
 /* 8 */
@@ -728,7 +718,7 @@ var Start = function Start(play, stage) {
   };
 
   var addButton = function addButton() {
-    var welcomeText = new createjs.Text("Get Ready!", "bold 36px Arial", "#fff");
+    var welcomeText = new createjs.Text("GET READY!", "bold 36px Arial", "#fff");
     welcomeText.textAlign = "center";
     welcomeText.x = width / 2;
     welcomeText.y = 150;
@@ -740,25 +730,30 @@ var Start = function Start(play, stage) {
 
     var background = new createjs.Shape();
     background.name = "background";
-    background.graphics.beginFill("lightgray").drawRoundRect(0, 0, 150, 60, 10);
+    background.graphics.beginFill("#4281A4").drawRoundRect(0, 0, 200, 60, 10);
 
-    var label = new createjs.Text("start", "50px Arial");
+    var label = new createjs.Text("START", "50px Arial", "#EAD2AC");
     label.name = "label";
     label.textAlign = "center";
     label.textBaseline = "middle";
-    label.x = 150 / 2;
+    label.x = 200 / 2;
     label.y = 60 / 2;
 
     var button = new createjs.Container();
     button.name = "button";
     button.x = width / 3;
-    button.y = height / 2;
+    button.y = height / 3 + 50;
 
     button.addChild(background, label);
     button.on("click", function () {
       return play();
     });
-
+    window.onkeydown = function (e) {
+      var code = e.keyCode ? e.keyCode : e.which;
+      if (code === 32) {
+        play();
+      };
+    };
     stage.addChild(button, welcomeText);
   };
 };
@@ -817,7 +812,12 @@ var Stop = function Stop(start, stage) {
     button.on("click", function () {
       return start();
     });
-
+    window.onkeydown = function (e) {
+      var code = e.keyCode ? e.keyCode : e.which;
+      if (code === 32) {
+        start();
+      };
+    };
     stage.addChild(button, goodbyeText);
   };
 };
